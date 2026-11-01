@@ -1,0 +1,39 @@
+📁 docs/README.adoc
+
+OwnerAdmin — Documentation Technique
+
+🎯 Objectif
+Ce dossier contient l’ensemble des documents techniques, guides opérateurs, spécifications internes et notes d’architecture du projet OwnerAdmin.
+
+📚 Contenu
+- VERSION.md — historique des versions  
+- CHANGELOG.md — journal des modifications  
+- ROADMAP.md — plan d’évolution  
+- Architecture.adoc — structure interne, modules, flux ACL  
+- Security.adoc — audit TPM / BitLocker / SecureBoot  
+- OperatorGuide.adoc — procédures d’engagement (Take / Restore)  
+- DesignNotes.adoc — conventions, normes, style Ghost Recon
+
+🧩 Structure documentaire
+Chaque fichier suit une logique :  
+- Objectif  
+- Contexte technique  
+- Procédures  
+- Sécurité  
+- Compatibilité  
+- Annexes
+
+🔐 Normes internes
+- Documentation en AsciiDoc  
+- Style militaire (HUD, opérateur, mission)  
+- Terminologie Windows ACL / SDDL  
+- Conformité Windows Security Baseline
+
+📡 Usage
+Les documents de ce dossier servent de référence pour :  
+- Développement  
+- Audit  
+- Maintenance  
+- Intégration Windows
+
+---
