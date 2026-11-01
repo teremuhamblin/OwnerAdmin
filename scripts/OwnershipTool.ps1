@@ -9,6 +9,14 @@ param(
     [switch]$HackerMode
 )
 
+# ───────────────────────────────────────────────────────────────
+# MODULES
+# ───────────────────────────────────────────────────────────────
+Import-Module "$PSScriptRoot\SystemSecurity.psm1"
+
+# ───────────────────────────────────────────────────────────────
+# HACKER BANNER
+# ───────────────────────────────────────────────────────────────
 function HackerBanner {
     Clear-Host
     Write-Host ""
@@ -26,11 +34,37 @@ function HackerBanner {
 
 if ($HackerMode) { HackerBanner }
 
+# ───────────────────────────────────────────────────────────────
+# LOGGING HELPERS
+# ───────────────────────────────────────────────────────────────
 function Info($msg)  { Write-Host "[INFO] $msg" -ForegroundColor Cyan }
 function Warn($msg)  { Write-Host "[WARN] $msg" -ForegroundColor Yellow }
 function Err($msg)   { Write-Host "[ERROR] $msg" -ForegroundColor Red }
 function Ok($msg)    { Write-Host "[OK] $msg" -ForegroundColor Green }
 
+# ───────────────────────────────────────────────────────────────
+# SYSTEM SECURITY SCAN (Ghost Recon Mode)
+# ───────────────────────────────────────────────────────────────
+if ($HackerMode) {
+    Write-Host ">>> Analyse Système • LEGION-UHD <<<" -ForegroundColor DarkGreen
+
+    $tpm = Get-TPMStatus
+    $bde = Get-BitLockerStatus
+    $sb  = Get-SecureBootStatus
+    $os  = Get-OSInfo
+
+    Write-Host "TPM Enabled      : $($tpm.IsEnabled)" -ForegroundColor Green
+    Write-Host "TPM Activated    : $($tpm.IsActivated)" -ForegroundColor Green
+    Write-Host "TPM Owned        : $($tpm.IsOwned)" -ForegroundColor Green
+    Write-Host "BitLocker        : $bde" -ForegroundColor Cyan
+    Write-Host "SecureBoot       : $sb" -ForegroundColor Cyan
+    Write-Host "OS               : $($os.Caption) ($($os.Version))" -ForegroundColor Yellow
+    Write-Host ""
+}
+
+# ───────────────────────────────────────────────────────────────
+# PROTECTION DES ZONES CRITIQUES
+# ───────────────────────────────────────────────────────────────
 $systemPaths = @(
     "$env:WINDIR\System32",
     "$env:WINDIR\WinSxS",
@@ -49,11 +83,14 @@ foreach ($sp in $systemPaths) {
     }
 }
 
+# ───────────────────────────────────────────────────────────────
+# CONFIRMATION
+# ───────────────────────────────────────────────────────────────
 Info "Cible : $fullPath"
 Info "Action : $Action"
 
 $question = switch ($Action) {
-    "TakeOwnership" { "CONFIRMER la prise de possession ? (y/n)" }
+    "TakeOwnership"          { "CONFIRMER la prise de possession ? (y/n)" }
     "RestoreTrustedInstaller" { "CONFIRMER la restauration TrustedInstaller ? (y/n)" }
 }
 
@@ -64,6 +101,9 @@ if ($answer -notin @("y","Y")) {
     exit 0
 }
 
+# ───────────────────────────────────────────────────────────────
+# ACTIONS PRINCIPALES
+# ───────────────────────────────────────────────────────────────
 switch ($Action) {
 
     "TakeOwnership" {
@@ -86,6 +126,9 @@ switch ($Action) {
     }
 }
 
+# ───────────────────────────────────────────────────────────────
+# FIN — MODE HACKER
+# ───────────────────────────────────────────────────────────────
 if ($HackerMode) {
     Write-Host ""
     Write-Host ">>> OPÉRATION TERMINÉE • LEGION-UHD MODULE <<<" -ForegroundColor DarkGreen
