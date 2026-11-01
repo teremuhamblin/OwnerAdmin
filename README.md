@@ -41,6 +41,7 @@ OwnerAdmin/
 │   └─ ContextMenu.reg
 └─ scripts/
     └─ OwnershipTool.ps1
+```
 
 ### 🔧 1. ** ContextMenu.reg **
 > *Ce fichier ajoute deux entrées dans le menu contextuel Windows*
@@ -71,7 +72,6 @@ powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "C:\Tools\Owners
 
 ### 🧨 2. OwnershipTool.ps1
 - Le cœur du projet : *un script PowerShell complet, sécurisé, stylé*.
-
 ```text
 🔐 Sécurité intégrée
 Le script bloque automatiquement les actions sur les dossiers critiques :
@@ -82,5 +82,3 @@ Le script bloque automatiquement les actions sur les dossiers critiques :
 - C:\Program Files
 - C:\Program Files (x86)
 ```
-
----
