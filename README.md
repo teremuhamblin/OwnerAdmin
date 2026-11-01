@@ -25,20 +25,22 @@ pentesters, et passionnés de personnalisation système.
 </p>
 
 ### 📂 Structure du projet
-- **Initiale**
+- *Initiale*
 ```text
 OwnerAdmin/
-├─ README.md 
+├─ README.md
 ├─ LICENSE
 ├─ VERSION.md
 ├─ .gitignore
 ├─ .github/
+│   ├─ ISSUE_TEMPLATE.md
+│   └─ PULLREQUESTTEMPLATE.md
 ├─ docs/
+│   └─ overview.rst
 ├─ reg/
 │   └─ ContextMenu.reg
 └─ scripts/
-     └─ OwnershipTool.ps1
-```
+    └─ OwnershipTool.ps1
 
 ### 🔧 1. ** ContextMenu.reg **
 > *Ce fichier ajoute deux entrées dans le menu contextuel Windows*
