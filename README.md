@@ -27,7 +27,7 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 
 > 📝 Crédits originaux :
 - https://www.howtogeek.com/howto/windows-vista/add-take-ownership-to-explorer-right-click-menu-in-vista/
-- howtogeek.com in Bing
+- **howtogeek.com in Bing**
    - *OwnerAdmin v1.6 est une version avancée, sécurisée, stylée, et entièrement réécrite pour usage professionnel*.
 
 ---
