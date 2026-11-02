@@ -5,13 +5,19 @@
 # 🛡️ OwnerAdmin
 - **v2.0** — *Ghost Recon Edition*
 > Advanced NTFS Ownership Control Suite for Windows — Military‑Grade + Hacker Mode
-# 🛡️ OwnerAdmin v1.6
->>Secure Ownership Control Tools for Windows — Safe + h4ch3r Mode
+
+---
+```text
+🛡️ OwnerAdmin v1.6
+- Secure Ownership Control Tools for Windows
+- — Safe + h4ch3r Mode
+```
 
 <p align="center">
 Interface militaire • Recon système avancé • Moteur ACL natif • Protection Windows renforcée  
 </p>
 
+---
 ---
 
 ### 📘 Présentation générale
@@ -31,6 +37,7 @@ OwnerAdmin v2.0 est une suite avancée de contrôle NTFS pour Windows, conçue p
 
 - 》》 *Cette version apporte une refonte complète du projet v1.6* :
 
+```text
 - Architecture modulaire (.psm1)  
 - Reconnaissance système avancée (VBS, HVCI, DeviceGuard, SecureKernel)  
 - Moteur ACL natif (C++ Engine)  
@@ -40,6 +47,7 @@ OwnerAdmin v2.0 est une suite avancée de contrôle NTFS pour Windows, conçue p
 - Mode Hacker amélioré  
 - Mode CleanLocks intégré  
 - Intégration contextuelle Windows via .reg  
+```
 
 ---
 
