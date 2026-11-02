@@ -1,34 +1,24 @@
 Windows Registry Editor Version 5.00
 
-; ================================
 ; OwnerAdmin v1.6 – Context Menu Raw
-; ================================
 
 [HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker]
 @="Take Ownership (OwnerAdmin)"
 "Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker\command]
-@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
-
-[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker]
-@="Take Ownership (OwnerAdmin)"
-"Icon"="powershell.exe"
-
-[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker\command]
-@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
-
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership"
 
 [HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker]
 @="Restore TrustedInstaller (OwnerAdmin)"
 "Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker\command]
-@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller"
 
-[HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker]
-@="Restore TrustedInstaller (OwnerAdmin)"
+[HKEY_CLASSES_ROOT\*\shell\CleanLocks]
+@="Clean Locks (OwnerAdmin)"
 "Icon"="powershell.exe"
 
-[HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker\command]
-@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+[HKEY_CLASSES_ROOT\*\shell\CleanLocks\command]
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action CleanLocks"
