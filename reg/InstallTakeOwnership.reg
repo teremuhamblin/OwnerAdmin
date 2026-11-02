@@ -1,0 +1,40 @@
+Windows Registry Editor Version 5.00
+
+; ================================
+; OwnerAdmin v1.6 – Installation
+; ================================
+
+; --- Take Ownership (Hacker Mode) ---
+[HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker]
+@="Take Ownership (OwnerAdmin)"
+"Icon"="powershell.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
+
+[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker]
+@="Take Ownership (OwnerAdmin)"
+"Icon"="powershell.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
+
+
+; --- Restore TrustedInstaller ---
+[HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker]
+@="Restore TrustedInstaller (OwnerAdmin)"
+"Icon"="powershell.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+
+[HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker]
+@="Restore TrustedInstaller (OwnerAdmin)"
+"Icon"="powershell.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
