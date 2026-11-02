@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+; ================================
+; OwnerAdmin v1.6 – Suppression
+; ================================
+
+; --- Remove Take Ownership ---
+[-HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker]
+[-HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker]
+
+; --- Remove Restore TrustedInstaller ---
+[-HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker]
+[-HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker]
