@@ -1,33 +1,34 @@
 Windows Registry Editor Version 5.00
 
-; === Take Ownership (Safe Hacker Mode) ===
+; ================================
+; OwnerAdmin v1.6 – Context Menu Raw
+; ================================
+
 [HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker]
-@="Take Ownership (Safe • Hacker Mode)"
-"NoWorkingDirectory"=""
+@="Take Ownership (OwnerAdmin)"
+"Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
 
-; === Directories ===
 [HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker]
-@="Take Ownership (Safe • Hacker Mode)"
-"NoWorkingDirectory"=""
+@="Take Ownership (OwnerAdmin)"
+"Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
 
-; === Restore TrustedInstaller ===
+
 [HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker]
-@="Restore TrustedInstaller (Hacker Mode)"
-"NoWorkingDirectory"=""
+@="Restore TrustedInstaller (OwnerAdmin)"
+"Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
 
-; === Directories ===
 [HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker]
-@="Restore TrustedInstaller (Hacker Mode)"
-"NoWorkingDirectory"=""
+@="Restore TrustedInstaller (OwnerAdmin)"
+"Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
