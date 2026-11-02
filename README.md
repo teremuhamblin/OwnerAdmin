@@ -23,7 +23,7 @@ Ce projet vise les administrateurs, pentesters, power‑users, et passionnés de
 
 ---
 
-🗂️ Résumé intégré (version traduite et enrichie)
+- 》》 🗂️ Résumé intégré (version enrichie)
 
 Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter une fonctionnalité de prise de possession de fichiers/dossiers via un simple clic droit.
 
@@ -31,12 +31,12 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 - ✔️ Désinstallation : exécuter RemoveTakeOwnership.reg
 
 > 📝 Crédits originaux :  
-> https://www.howtogeek.com/howto/windows-vista/add-take-ownership-to-explorer-right-click-menu-in-vista/ (howtogeek.com in Bing)  
-> OwnerAdmin v1.6 est une version avancée, sécurisée, stylée, et entièrement réécrite pour usage professionnel.
+> https://www.howtogeek.com/howto/windows-vista/add-take-ownership-to-explorer-right-click-menu-in-vista/ (howtogeek.com in Bing)
+   - OwnerAdmin v1.6 est une version avancée, sécurisée, stylée, et entièrement réécrite pour usage professionnel.
 
 ---
 
-⚙️ Fonctionnalités principales
+### ⚙️ Fonctionnalités principales
 
 🧩 Gestion NTFS avancée
 - ✔️ Prise de possession sécurisée (Take Ownership Safe)  
@@ -78,9 +78,9 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 
 ---
 
-📂 Structure du projet
+### 📂 Structure du projet
 
-`text
+```text
 OwnerAdmin/
 ├─ README.md
 ├─ LICENSE
@@ -97,7 +97,7 @@ OwnerAdmin/
 │   └─ ContextMenu.reg
 └─ scripts/
     └─ OwnershipTool.ps1
-`
+```
 
 ---
 
@@ -117,13 +117,13 @@ Ce fichier ajoute deux entrées dans le menu contextuel Windows :
 - Mode Hacker activé  
 
 📌 Fonctionnement interne
-`text
+```text
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass ^
   -File "C:\Tools\OwnershipTool.ps1" ^
   -Action TakeOwnership ^
   -Path "%1" ^
   -HackerMode 1
-`
+```
 
 ---
 
@@ -132,32 +132,32 @@ powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass ^
 🔐 Sécurité intégrée
 Le script bloque automatiquement les actions sur les dossiers critiques :
 
-`text
+```text
 C:\Windows\System32
 C:\Windows\WinSxS
 C:\Windows\Boot
 C:\Program Files
 C:\Program Files (x86)
-`
+```
 
 🛑 Confirmation obligatoire
 Avant toute action, l’utilisateur doit valider :
 
-`text
+```text
 CONFIRMER la prise de possession ? (y/n)
 CONFIRMER la restauration TrustedInstaller ? (y/n)
-`
+```
 
 🟩 Action : TakeOwnership
-`text
+```text
 takeown /f "<path>" /r /d y
 icacls "<path>" /grant Administrators:F /t
-`
+```
 
 🟦 Action : RestoreTrustedInstaller
-`text
+```text
 icacls "<path>" /setowner "NT SERVICE\TrustedInstaller" /t
-`
+```
 
 💻 Mode Hacker
 - ASCII art militaire  
@@ -180,15 +180,13 @@ icacls "<path>" /setowner "NT SERVICE\TrustedInstaller" /t
 ---
 
 👤 Auteur
-The MadDoG.tmdg  
-Créateur du projet OwnerAdmin v1.6  
-Licence personnelle incluse dans le dépôt.
+- The MadDoG.tmdg  
+- Créateur du projet OwnerAdmin v1.6  
+- Licence personnelle incluse dans le dépôt.
 
 ---
 
 📜 Licence
-Voir fichier LICENSE.
+- 》》Voir fichier LICENSE.
 
 ---
-
-🔥 
