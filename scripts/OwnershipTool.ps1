@@ -1,9 +1,9 @@
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("TakeOwnership", "RestoreTrustedInstaller")]
+    [ValidateSet("TakeOwnership", "RestoreTrustedInstaller", "CleanLocks")]
     [string]$Action,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [string]$Path,
 
     [switch]$HackerMode
@@ -41,6 +41,28 @@ function Info($msg)  { Write-Host "[INFO] $msg" -ForegroundColor Cyan }
 function Warn($msg)  { Write-Host "[WARN] $msg" -ForegroundColor Yellow }
 function Err($msg)   { Write-Host "[ERROR] $msg" -ForegroundColor Red }
 function Ok($msg)    { Write-Host "[OK] $msg" -ForegroundColor Green }
+
+# ───────────────────────────────────────────────────────────────
+# MODE CLEANLOCKS — Nettoyage des fichiers .lck / .lock
+# ───────────────────────────────────────────────────────────────
+if ($Action -eq "CleanLocks") {
+
+    Info "Nettoyage des fichiers .lck et .lock..."
+
+    $bat = Join-Path $PSScriptRoot "tools\fix.bat"
+    $ps1 = Join-Path $PSScriptRoot "tools\fix.ps1"
+
+    if (Test-Path $bat) {
+        & $bat
+    }
+
+    if (Test-Path $ps1) {
+        & $ps1
+    }
+
+    Ok "Nettoyage terminé."
+    exit 0
+}
 
 # ───────────────────────────────────────────────────────────────
 # SYSTEM SECURITY SCAN (Ghost Recon Mode)
