@@ -87,6 +87,7 @@ OwnerAdmin/
 ├─ README.md
 ├─ LICENSE
 ├─ VERSION.md
+├─ .editorconfig
 ├─ .gitignore
 ├─ .github/
 │   ├─ workflows/
