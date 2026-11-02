@@ -87,16 +87,24 @@ OwnerAdmin/
 ├─ VERSION.md
 ├─ .gitignore
 ├─ .github/
+│   ├─ workflows/
 │   ├─ ISSUE_TEMPLATE.md
 │   └─ PULLREQUESTTEMPLATE.md
+│   └─ .gitkeep
 ├─ docs/
-│   └─ overview.rst
+│   ├─ README.rst
+│   ├─ overview.md
+│   └─ .gitkeep
 ├─ reg/
+│   ├─ README.rst
+│   ├─ ContextMenu.reg
 │   ├─ InstallTakeOwnership.reg
 │   ├─ RemoveTakeOwnership.reg
-│   └─ ContextMenu.reg
+│   └─ .gitkeep
 └─ scripts/
-    └─ OwnershipTool.ps1
+│   ├─ README.rst
+│   ├─ OwnershipTool.ps1
+│   └─ .gitkeep
 ```
 
 ---
