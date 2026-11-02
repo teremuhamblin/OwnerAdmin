@@ -12,12 +12,12 @@ param(
 # ============================================================
 #   MODULES
 # ============================================================
-Import-Module "$PSScriptRoot\modules\SystemSecurity.psm1"
-Import-Module "$PSScriptRoot\modules\ReconSecurity.psm1"
-Import-Module "$PSScriptRoot\modules\OwnershipCore.psm1"
-Import-Module "$PSScriptRoot\modules\Protection.psm1"
-Import-Module "$PSScriptRoot\modules\LoggingUHD.psm1"
-Import-Module "$PSScriptRoot\modules\NativeACL.psm1"
+Import-Module "$PSScriptRoot\scripts\SystemSecurity.psm1"
+Import-Module "$PSScriptRoot\scripts\ReconSecurity.psm1"
+Import-Module "$PSScriptRoot\scripts\OwnershipCore.psm1"
+Import-Module "$PSScriptRoot\scripts\Protection.psm1"
+Import-Module "$PSScriptRoot\scripts\LoggingUHD.psm1"
+Import-Module "$PSScriptRoot\scripts\NativeACL.psm1"
 
 # ============================================================
 #   BANNIÈRE HACKER
