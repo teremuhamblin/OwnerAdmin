@@ -1,0 +1,87 @@
+###############################################################################
+# OwnerAdmin v1.6 – Git Attributes
+# Optimisé pour Windows 10/11, PowerShell, fichiers .reg, GitHub Linguist
+###############################################################################
+
+###############################################################################
+# Normalisation des fins de ligne
+# - Tous les fichiers texte → LF
+# - Fichiers Windows Registry (.reg) → CRLF obligatoire
+###############################################################################
+
+* text=auto eol=lf
+
+# Scripts PowerShell
+*.ps1 text eol=lf
+*.psm1 text eol=lf
+
+# Fichiers Windows Registry (CRLF obligatoire pour import Windows)
+*.reg text eol=crlf
+
+# Fichiers de documentation
+*.md  text eol=lf
+*.rst text eol=lf
+*.txt text eol=lf
+
+# Fichiers de configuration
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+###############################################################################
+# GitHub Linguist – Classification intelligente
+###############################################################################
+
+# scripts/ = code PowerShell
+scripts/** linguist-language=PowerShell
+
+# reg/ = fichiers Windows Registry
+reg/** linguist-language=INI
+
+# docs/ = documentation
+docs/** linguist-documentation=true
+
+# README, LICENSE, VERSION = documentation
+README.md linguist-documentation=true
+LICENSE   linguist-documentation=true
+VERSION.md linguist-documentation=true
+
+###############################################################################
+# Binaire / non diffable
+###############################################################################
+
+# Images (si ajout futur)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+
+# Archives
+*.zip binary
+*.7z  binary
+*.rar binary
+
+###############################################################################
+# Sécurité : empêcher Git de tenter un diff sur les fichiers sensibles
+###############################################################################
+
+# Fichiers Windows Registry → pas de diff textuel
+*.reg -diff
+
+# Fichiers PowerShell → diff textuel OK
+*.ps1 diff
+
+###############################################################################
+# Compatibilité Windows 10 / Windows 11
+# (évite les corruptions de scripts et de .reg lors des clones)
+###############################################################################
+
+# Scripts Windows → LF
+*.cmd text eol=lf
+*.bat text eol=lf
+
+# Fichiers système Windows → CRLF
+*.ini text eol=crlf
+*.inf text eol=crlf

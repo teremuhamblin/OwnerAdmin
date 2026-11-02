@@ -1,0 +1,9 @@
+# OwnerAdmin v1.6 — CODEOWNERS
+
+# Mainteneur principal
+* @teremuhamblin
+
+# Dossiers critiques
+/scripts/ @teremuhamblin
+/reg/     @teremuhamblin
+/docs/    @teremuhamblin

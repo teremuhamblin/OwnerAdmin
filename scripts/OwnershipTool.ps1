@@ -1,23 +1,28 @@
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("TakeOwnership", "RestoreTrustedInstaller")]
+    [ValidateSet("TakeOwnership", "RestoreTrustedInstaller", "CleanLocks", "NativeACL")]
     [string]$Action,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [string]$Path,
 
     [switch]$HackerMode
 )
 
-# ───────────────────────────────────────────────────────────────
-# MODULES
-# ───────────────────────────────────────────────────────────────
-Import-Module "$PSScriptRoot\SystemSecurity.psm1"
+# ============================================================
+#   MODULES
+# ============================================================
+Import-Module "$PSScriptRoot\scripts\SystemSecurity.psm1"
+Import-Module "$PSScriptRoot\scripts\ReconSecurity.psm1"
+Import-Module "$PSScriptRoot\scripts\OwnershipCore.psm1"
+Import-Module "$PSScriptRoot\scripts\Protection.psm1"
+Import-Module "$PSScriptRoot\scripts\LoggingUHD.psm1"
+Import-Module "$PSScriptRoot\scripts\NativeACL.psm1"
 
-# ───────────────────────────────────────────────────────────────
-# HACKER BANNER
-# ───────────────────────────────────────────────────────────────
-function HackerBanner {
+# ============================================================
+#   BANNIÈRE HACKER
+# ============================================================
+function Show-Banner {
     Clear-Host
     Write-Host ""
     Write-Host " ███████╗██╗   ██╗██████╗  █████╗ ██████╗ " -ForegroundColor Green
@@ -32,66 +37,73 @@ function HackerBanner {
     Write-Host ""
 }
 
-if ($HackerMode) { HackerBanner }
+if ($HackerMode) { Show-Banner }
 
-# ───────────────────────────────────────────────────────────────
-# LOGGING HELPERS
-# ───────────────────────────────────────────────────────────────
-function Info($msg)  { Write-Host "[INFO] $msg" -ForegroundColor Cyan }
-function Warn($msg)  { Write-Host "[WARN] $msg" -ForegroundColor Yellow }
-function Err($msg)   { Write-Host "[ERROR] $msg" -ForegroundColor Red }
-function Ok($msg)    { Write-Host "[OK] $msg" -ForegroundColor Green }
+# ============================================================
+#   LOGGING HELPERS
+# ============================================================
+function Info($msg)  { Write-UHDLog -Level INFO     -Message $msg }
+function Warn($msg)  { Write-UHDLog -Level WARNING  -Message $msg }
+function Err($msg)   { Write-UHDLog -Level CRITICAL -Message $msg }
+function Ok($msg)    { Write-UHDLog -Level INFO     -Message $msg }
 
-# ───────────────────────────────────────────────────────────────
-# SYSTEM SECURITY SCAN (Ghost Recon Mode)
-# ───────────────────────────────────────────────────────────────
+# ============================================================
+#   MODE CLEANLOCKS
+# ============================================================
+if ($Action -eq "CleanLocks") {
+    Info "Nettoyage des fichiers .lck / .lock..."
+    $result = Invoke-CleanLocks -Path $Path
+    Ok "Nettoyage terminé. Fichiers supprimés : $($result.Count)"
+    exit 0
+}
+
+# ============================================================
+#   MODE HACKER — HUD COMPLET
+# ============================================================
 if ($HackerMode) {
-    Write-Host ">>> Analyse Système • LEGION-UHD <<<" -ForegroundColor DarkGreen
+    Show-HackerMode
 
-    $tpm = Get-TPMStatus
-    $bde = Get-BitLockerStatus
-    $sb  = Get-SecureBootStatus
-    $os  = Get-OSInfo
+    Write-Host ""
+    Write-Host ">>> ADVANCED SECURITY RECON" -ForegroundColor Yellow
+    Write-Host "------------------------------------------------------------" -ForegroundColor DarkYellow
 
-    Write-Host "TPM Enabled      : $($tpm.IsEnabled)" -ForegroundColor Green
-    Write-Host "TPM Activated    : $($tpm.IsActivated)" -ForegroundColor Green
-    Write-Host "TPM Owned        : $($tpm.IsOwned)" -ForegroundColor Green
-    Write-Host "BitLocker        : $bde" -ForegroundColor Cyan
-    Write-Host "SecureBoot       : $sb" -ForegroundColor Cyan
-    Write-Host "OS               : $($os.Caption) ($($os.Version))" -ForegroundColor Yellow
+    $recon = Invoke-SystemRecon
+
+    Write-Host (" Boot Mode       : {0}" -f $recon.BootMode)
+    Write-Host (" Hyper-V         : {0}" -f $recon.HyperV)
+    Write-Host (" VBS             : {0}" -f $recon.VBS)
+    Write-Host (" HVCI            : {0}" -f $recon.HVCI)
+    Write-Host (" CredentialGuard : {0}" -f $recon.CredentialGuard)
+    Write-Host (" Core Isolation  : {0}" -f $recon.CoreIsolation)
+    Write-Host (" Secure Kernel   : {0}" -f $recon.SecureKernel)
+
     Write-Host ""
 }
 
-# ───────────────────────────────────────────────────────────────
-# PROTECTION DES ZONES CRITIQUES
-# ───────────────────────────────────────────────────────────────
-$systemPaths = @(
-    "$env:WINDIR\System32",
-    "$env:WINDIR\WinSxS",
-    "$env:WINDIR\Boot",
-    "$env:ProgramFiles",
-    "$env:ProgramFiles(x86)"
-)
-
-$fullPath = [System.IO.Path]::GetFullPath($Path)
-
-foreach ($sp in $systemPaths) {
-    if ($fullPath.StartsWith($sp, [System.StringComparison]::InvariantCultureIgnoreCase)) {
-        Err "Zone critique détectée : $fullPath"
-        Err "Action bloquée pour éviter une corruption système."
-        exit 1
-    }
+# ============================================================
+#   PROTECTION DES ZONES CRITIQUES
+# ============================================================
+try {
+    Assert-PathSafety -Path $Path
+}
+catch {
+    Err "Zone critique détectée : $Path"
+    Err "Action bloquée pour éviter une corruption système."
+    exit 1
 }
 
-# ───────────────────────────────────────────────────────────────
-# CONFIRMATION
-# ───────────────────────────────────────────────────────────────
+# ============================================================
+#   CONFIRMATION UTILISATEUR
+# ============================================================
+$fullPath = [System.IO.Path]::GetFullPath($Path)
+
 Info "Cible : $fullPath"
 Info "Action : $Action"
 
 $question = switch ($Action) {
-    "TakeOwnership"          { "CONFIRMER la prise de possession ? (y/n)" }
+    "TakeOwnership"           { "CONFIRMER la prise de possession ? (y/n)" }
     "RestoreTrustedInstaller" { "CONFIRMER la restauration TrustedInstaller ? (y/n)" }
+    "NativeACL"               { "CONFIRMER l'utilisation du moteur ACL natif ? (y/n)" }
 }
 
 $answer = Read-Host $question
@@ -101,34 +113,33 @@ if ($answer -notin @("y","Y")) {
     exit 0
 }
 
-# ───────────────────────────────────────────────────────────────
-# ACTIONS PRINCIPALES
-# ───────────────────────────────────────────────────────────────
+# ============================================================
+#   ACTIONS PRINCIPALES
+# ============================================================
 switch ($Action) {
 
     "TakeOwnership" {
         Info "Prise de possession..."
-        & takeown /f "$fullPath" /r /d y | Out-Null
-
-        Info "Application des droits Administrators:F..."
-        & icacls "$fullPath" /grant Administrators:F /t | Out-Null
-
-        Ok "Propriété prise + droits Administrators appliqués."
+        $result = Invoke-TakeOwnership -Path $fullPath
+        Ok "Propriété prise."
     }
 
     "RestoreTrustedInstaller" {
-        $trusted = "NT SERVICE\TrustedInstaller"
+        Info "Restauration TrustedInstaller..."
+        $result = Invoke-RestoreTrustedInstaller -Path $fullPath
+        Ok "Propriétaire restauré."
+    }
 
-        Info "Restauration du propriétaire TrustedInstaller..."
-        & icacls "$fullPath" /setowner "$trusted" /t | Out-Null
-
-        Ok "Propriétaire restauré à TrustedInstaller."
+    "NativeACL" {
+        Info "Moteur ACL natif OwnerAdminACL.exe..."
+        $result = Invoke-NativeACL -Path $fullPath -Mode "FullControl"
+        Ok "NativeACL exécuté."
     }
 }
 
-# ───────────────────────────────────────────────────────────────
-# FIN — MODE HACKER
-# ───────────────────────────────────────────────────────────────
+# ============================================================
+#   FIN — MODE HACKER
+# ============================================================
 if ($HackerMode) {
     Write-Host ""
     Write-Host ">>> OPÉRATION TERMINÉE • LEGION-UHD MODULE <<<" -ForegroundColor DarkGreen

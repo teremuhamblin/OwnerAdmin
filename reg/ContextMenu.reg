@@ -1,33 +1,137 @@
 Windows Registry Editor Version 5.00
 
-; === Take Ownership (Safe Hacker Mode) ===
+; ============================================================
+; OwnerAdmin — Menu Contextuel Fusionné (v1.6 + v2.0 + Ghost Recon)
+; ============================================================
+; Ce fichier reg regroupe :
+; - Version RAW OwnerAdmin v1.6
+; - Version optimisée OwnerAdmin
+; - Version LEGION-UHD Ghost Recon
+; - Version OwnerAdmin v2.0 (4 modes + NativeACL)
+; ============================================================
+
+
+; ============================================================
+; SECTION 1 — OwnerAdmin v1.6 RAW
+; ============================================================
+
 [HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker]
-@="Take Ownership (Safe • Hacker Mode)"
-"NoWorkingDirectory"=""
+@="Take Ownership (OwnerAdmin)"
+"Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\*\shell\TakeOwnershipHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership"
 
-; === Directories ===
-[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker]
-@="Take Ownership (Safe • Hacker Mode)"
-"NoWorkingDirectory"=""
-
-[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnershipHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -Path \"%1\" -HackerMode 1"
-
-; === Restore TrustedInstaller ===
 [HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker]
-@="Restore TrustedInstaller (Hacker Mode)"
-"NoWorkingDirectory"=""
+@="Restore TrustedInstaller (OwnerAdmin)"
+"Icon"="powershell.exe"
 
 [HKEY_CLASSES_ROOT\*\shell\RestoreTrustedInstallerHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller"
 
-; === Directories ===
-[HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker]
-@="Restore TrustedInstaller (Hacker Mode)"
-"NoWorkingDirectory"=""
+[HKEY_CLASSES_ROOT\*\shell\CleanLocks]
+@="Clean Locks (OwnerAdmin)"
+"Icon"="powershell.exe"
 
-[HKEY_CLASSES_ROOT\Directory\shell\RestoreTrustedInstallerHacker\command]
-@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -Path \"%1\" -HackerMode 1"
+[HKEY_CLASSES_ROOT\*\shell\CleanLocks\command]
+@="powershell.exe -File \"C:\\Tools\\OwnershipTool.ps1\" -Action CleanLocks"
+
+
+
+; ============================================================
+; SECTION 2 — OwnerAdmin v1.6 Optimisé (Menu regroupé)
+; ============================================================
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin]
+@="OwnerAdmin"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin\shell\TakeOwnership]
+@="Take Ownership"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin\shell\TakeOwnership\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin\shell\RestoreTrustedInstaller]
+@="Restore TrustedInstaller"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin\shell\RestoreTrustedInstaller\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin\shell\CleanLocks]
+@="Clean Locks"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdmin\shell\CleanLocks\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action CleanLocks"
+
+
+
+; ============================================================
+; SECTION 3 — LEGION-UHD Ghost Recon (Mode Hacker)
+; ============================================================
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD]
+@="⚡ LEGION-UHD Tactical Ops"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD\shell\TakeOwnership]
+@="🟩 Take Ownership (Ghost Recon)"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD\shell\TakeOwnership\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership -HackerMode"
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD\shell\RestoreTrustedInstaller]
+@="🟦 Restore TrustedInstaller (Ghost Recon)"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD\shell\RestoreTrustedInstaller\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller -HackerMode"
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD\shell\CleanLocks]
+@="🟨 Clean Locks (Ghost Recon)"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\LEGION-UHD\shell\CleanLocks\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action CleanLocks"
+
+
+
+; ============================================================
+; SECTION 4 — OwnerAdmin v2.0 (4 Modes + Native ACL Engine)
+; ============================================================
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2]
+@="OwnerAdmin v2.0"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\TakeOwnership]
+@="Take Ownership"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\TakeOwnership\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action TakeOwnership"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\RestoreTrustedInstaller]
+@="Restore TrustedInstaller"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\RestoreTrustedInstaller\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action RestoreTrustedInstaller"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\CleanLocks]
+@="Clean Locks"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\CleanLocks\command]
+@="powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"C:\\Tools\\OwnershipTool.ps1\" -Action CleanLocks"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\NativeACL]
+@="Native ACL Engine (C++)"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\OwnerAdminV2\shell\NativeACL\command]
+@="C:\\Tools\\native\\OwnerAdminACL.exe \"%1\" Administrators"
