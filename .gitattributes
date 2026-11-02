@@ -1,63 +1,87 @@
 ###############################################################################
-# Set default behavior to automatically normalize line endings.
+# OwnerAdmin v1.6 – Git Attributes
+# Optimisé pour Windows 10/11, PowerShell, fichiers .reg, GitHub Linguist
 ###############################################################################
-* text=auto
 
 ###############################################################################
-# Set default behavior for command prompt diff.
-#
-# This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
-# Note: This is only used by command line
+# Normalisation des fins de ligne
+# - Tous les fichiers texte → LF
+# - Fichiers Windows Registry (.reg) → CRLF obligatoire
 ###############################################################################
-#*.cs     diff=csharp
+
+* text=auto eol=lf
+
+# Scripts PowerShell
+*.ps1 text eol=lf
+*.psm1 text eol=lf
+
+# Fichiers Windows Registry (CRLF obligatoire pour import Windows)
+*.reg text eol=crlf
+
+# Fichiers de documentation
+*.md  text eol=lf
+*.rst text eol=lf
+*.txt text eol=lf
+
+# Fichiers de configuration
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
 
 ###############################################################################
-# Set the merge driver for project and solution files
-#
-# Merging from the command prompt will add diff markers to the files if there
-# are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following 
-# file extensions to fail to load in VS. An alternative would be to treat
-# these files as binary and thus will always conflict and require user
-# intervention with every merge. To do so, just uncomment the entries below
+# GitHub Linguist – Classification intelligente
 ###############################################################################
-#*.sln       merge=binary
-#*.csproj    merge=binary
-#*.vbproj    merge=binary
-#*.vcxproj   merge=binary
-#*.vcproj    merge=binary
-#*.dbproj    merge=binary
-#*.fsproj    merge=binary
-#*.lsproj    merge=binary
-#*.wixproj   merge=binary
-#*.modelproj merge=binary
-#*.sqlproj   merge=binary
-#*.wwaproj   merge=binary
+
+# scripts/ = code PowerShell
+scripts/** linguist-language=PowerShell
+
+# reg/ = fichiers Windows Registry
+reg/** linguist-language=INI
+
+# docs/ = documentation
+docs/** linguist-documentation=true
+
+# README, LICENSE, VERSION = documentation
+README.md linguist-documentation=true
+LICENSE   linguist-documentation=true
+VERSION.md linguist-documentation=true
 
 ###############################################################################
-# behavior for image files
-#
-# image files are treated as binary by default.
+# Binaire / non diffable
 ###############################################################################
-#*.jpg   binary
-#*.png   binary
-#*.gif   binary
+
+# Images (si ajout futur)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+
+# Archives
+*.zip binary
+*.7z  binary
+*.rar binary
 
 ###############################################################################
-# diff behavior for common document formats
-# 
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the 
-# entries below.
+# Sécurité : empêcher Git de tenter un diff sur les fichiers sensibles
 ###############################################################################
-#*.doc   diff=astextplain
-#*.DOC   diff=astextplain
-#*.docx  diff=astextplain
-#*.DOCX  diff=astextplain
-#*.dot   diff=astextplain
-#*.DOT   diff=astextplain
-#*.pdf   diff=astextplain
-#*.PDF   diff=astextplain
-#*.rtf   diff=astextplain
-#*.RTF   diff=astextplain
+
+# Fichiers Windows Registry → pas de diff textuel
+*.reg -diff
+
+# Fichiers PowerShell → diff textuel OK
+*.ps1 diff
+
+###############################################################################
+# Compatibilité Windows 10 / Windows 11
+# (évite les corruptions de scripts et de .reg lors des clones)
+###############################################################################
+
+# Scripts Windows → LF
+*.cmd text eol=lf
+*.bat text eol=lf
+
+# Fichiers système Windows → CRLF
+*.ini text eol=crlf
+*.inf text eol=crlf
