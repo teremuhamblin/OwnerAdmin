@@ -185,8 +185,8 @@ OwnerAdmin/
 ├─ .github/
 │   ├─ workflows/
 │   ├─ ISSUE_TEMPLATE.md
-│   ├─ PULLREQUESTTEMPLATE.md
-│   └─ PULLREQUESTTEMPLATE.md
+│   ├─ PULL_REQUEST_TEMPLATE.md
+│   └─ CODEOWNERS
 │   └─ .gitkeep
 ├─ docs/
 │   ├─ README.rst
