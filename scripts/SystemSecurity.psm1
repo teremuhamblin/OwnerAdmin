@@ -1,46 +1,83 @@
 function Get-TPMStatus {
     try {
         $tpm = Get-WmiObject -Namespace "root\cimv2\security\MicrosoftTpm" -Class Win32_Tpm -ErrorAction Stop
+
         return [PSCustomObject]@{
-            IsEnabled   = $tpm.IsEnabled().IsEnabled
-            IsActivated = $tpm.IsActivated().IsActivated
-            IsOwned     = $tpm.IsOwned().IsOwned
+            IsEnabled      = $tpm.IsEnabled().IsEnabled
+            IsActivated    = $tpm.IsActivated().IsActivated
+            IsOwned        = $tpm.IsOwned().IsOwned
+            ManufacturerID = $tpm.ManufacturerId
+            SpecVersion    = ($tpm.SpecVersion | Out-String).Trim()
         }
     } catch {
-        return $null
+        return [PSCustomObject]@{
+            IsEnabled      = $false
+            IsActivated    = $false
+            IsOwned        = $false
+            ManufacturerID = "N/A"
+            SpecVersion    = "N/A"
+        }
     }
 }
 
 function Get-BitLockerStatus {
     try {
-        $vol = Get-WmiObject -Namespace "root\cimv2\security\MicrosoftVolumeEncryption" -Class Win32_EncryptableVolume
-        $status = $vol.GetProtectionStatus().ProtectionStatus
+        $volumes = Get-WmiObject -Namespace "root\cimv2\security\MicrosoftVolumeEncryption" -Class Win32_EncryptableVolume
 
-        return switch ($status) {
-            0 { "Non protégé" }
-            1 { "Protégé" }
-            2 { "Protection en cours" }
-            default { "Inconnu" }
+        $results = foreach ($vol in $volumes) {
+            $status = $vol.GetProtectionStatus().ProtectionStatus
+
+            $state = switch ($status) {
+                0 { "Non protégé" }
+                1 { "Protégé" }
+                2 { "Protection en cours" }
+                default { "Inconnu" }
+            }
+
+            [PSCustomObject]@{
+                DriveLetter = $vol.DriveLetter
+                Status      = $state
+            }
         }
+
+        return $results
     } catch {
-        return "Indisponible"
+        return [PSCustomObject]@{
+            DriveLetter = "N/A"
+            Status      = "Indisponible"
+        }
     }
 }
 
 function Get-SecureBootStatus {
     try {
         $sb = Confirm-SecureBootUEFI
-        return $sb
+        return [PSCustomObject]@{
+            SecureBoot = $sb
+        }
     } catch {
-        return $false
+        return [PSCustomObject]@{
+            SecureBoot = $false
+        }
     }
 }
 
 function Get-OSInfo {
-    $os = Get-WmiObject Win32_OperatingSystem
-    return [PSCustomObject]@{
-        Caption = $os.Caption
-        Version = $os.Version
-        Build   = $os.BuildNumber
+    try {
+        $os = Get-WmiObject Win32_OperatingSystem
+
+        return [PSCustomObject]@{
+            Caption = $os.Caption
+            Version = $os.Version
+            Build   = $os.BuildNumber
+            Arch    = (Get-CimInstance Win32_Processor).AddressWidth
+        }
+    } catch {
+        return [PSCustomObject]@{
+            Caption = "Indisponible"
+            Version = "N/A"
+            Build   = "N/A"
+            Arch    = "N/A"
+        }
     }
 }
