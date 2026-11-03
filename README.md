@@ -1,19 +1,12 @@
 ###### Version v2.0 du README.md, entièrement réécrite, modernisée, militarisée, alignée avec toutes les évolutions récentes de ton projet OwnerAdmin (modules .psm1, HUD, ReconSecurity, NativeACL, LoggingUHD, Protection, architecture complète).
 
----
-
-# 🛡️ OwnerAdmin
+# 🛡️ OwnerAdmin 🛡️
 - **v2.0** — *Ghost Recon Edition*
-> Advanced NTFS Ownership Control Suite for Windows — Military‑Grade + Hacker Mode
 
----
-```text
-🛡️ OwnerAdmin v1.6
-- Secure Ownership Control Tools for Windows
-- — Safe + h4ch3r Mode
-```
-
-<p align="center">
+<p align="left">
+NTFS Ownership Control Suite for Windows + Military‑Grade + H4ch3r Mode
+</p>
+<p align="right">
 Interface militaire • Recon système avancé • Moteur ACL natif • Protection Windows renforcée  
 </p>
 
@@ -21,22 +14,20 @@ Interface militaire • Recon système avancé • Moteur ACL natif • Protecti
 ---
 
 ### 📘 Présentation générale
-
 OwnerAdmin v2.0 est une suite avancée de contrôle NTFS pour Windows, conçue pour les :
-
-- Administrateurs système  
+```text
+- Administrateurs système 
 - Pentesters  
 - Power‑users  
 - Architectes Windows Ops  
 - Passionnés de customisation système Ghost Recon / LEGION‑UHD  
-*OwnerAdmin v1.6* est un *module avancé de gestion de propriété NTFS pour Windows*, permettant d’ajouter au menu contextuel *(clic droit)* deux actions critiques :
-```text
-- ✔️ Take Ownership (Safe + Hacker Mode)  
-- ✔️ Restore TrustedInstaller (Hacker Mode)  
 ```
 
-- 》》 *Cette version apporte une refonte complète du projet v1.6* :
+*OwnerAdmin v1.6* est un *module avancé de gestion de propriété NTFS pour Windows*, permettant d’ajouter au menu contextuel *(clic droit)* deux actions critiques :
+- ✔️ Take Ownership (Safe + Hacker Mode)  
+- ✔️ Restore TrustedInstaller (Hacker Mode)
 
+#### 》》 *Cette version apporte une refonte complète du projet v1.6* :
 ```text
 - Architecture modulaire (.psm1)  
 - Reconnaissance système avancée (VBS, HVCI, DeviceGuard, SecureKernel)  
@@ -50,9 +41,9 @@ OwnerAdmin v2.0 est une suite avancée de contrôle NTFS pour Windows, conçue p
 ```
 
 ---
+---
 
 ### ⚙️ Fonctionnalités principales v2.0
-
 - 》》 **🧩 Gestion NTFS avancée**
 ```text
 - ✔️ Take Ownership (Safe + Hacker Mode)
@@ -81,7 +72,7 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 - **howtogeek.com in Bing**
    - *OwnerAdmin v1.6 est une version avancée, sécurisée, stylée, et entièrement réécrite pour usage professionnel*.
 
-- 》》 🛰️ **Reconnaissance système Ghost Recon**
+#### 》》 🛰️ **Reconnaissance système Ghost Recon**
 ```text
 - ✔️ TPM Status
 - ✔️ BitLocker Status
@@ -97,7 +88,7 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 - ✔️ Boot Mode (UEFI / Legacy)
 ```
 
-- 》》 🖥️ **Interface & UX**
+#### 》》 🖥️ **Interface & UX**
 ```text
 - ✔️ HUD HackerMode (ASCII militaire)
 - ✔️ Console Ghost Recon (vert/noir)
@@ -105,7 +96,7 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 - ✔️ Exécution silencieuse PowerShell (NoLogo / NoProfile)
 ```
 
-- 》》 🛠️ **Architecture modulaire**
+#### 》》 🛠️ **Architecture modulaire**
 ```text
 - ✔️ SystemSecurity.psm1
 - ✔️ ReconSecurity.psm1
@@ -117,7 +108,7 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 
 ---
 
-- 》》 📦 **Packaging v2.0**
+#### 》》 📦 **Packaging v2.0**
 ```text
 - ✔️ Fichiers .reg prêts à l’emploi
 - ✔️ Scripts PowerShell modulaires
@@ -125,6 +116,10 @@ Ce projet inclut des entrées de registre pour Windows OS permettant d’ajouter
 - ✔️ LICENSE personnelle
 - ✔️ VERSION.md complet
 ```
+
+---
+---
+
 ### ⚙️ Fonctionnalités principales
 》》 🧩 **Gestion NTFS avancée**
 ```text
