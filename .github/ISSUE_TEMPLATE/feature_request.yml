@@ -1,0 +1,22 @@
+name: 💡 Demande de fonctionnalité (Feature Request)
+description: Suggérer une idée ou une amélioration pour OwnerAdmin v2.0
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Quel problème cette fonctionnalité résout-elle ?
+      description: Décrivez le besoin ou le pain point.
+      placeholder: Je suis toujours frustré par...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution proposée
+      description: Décrivez comment vous verriez la solution.
+      placeholder: J'aimerais que cette fonctionnalité permette de...
+    validations:
+      required: true
