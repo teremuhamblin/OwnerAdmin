@@ -1,0 +1,24 @@
+# Configuration pour le tri automatique des issues (Triage) pour OwnerAdmin v2.0
+policy:
+  - template: ["bug_report.yml"]
+    section:
+      - id: ["modules"]
+        block-list: []
+        label:
+          - name: module:dashboard
+            keys: ["Tableau de bord (Dashboard)"]
+          - name: module:auth
+            keys: ["Authentification & Utilisateurs"]
+          - name: module:backend
+            keys: ["API & Backend"]
+          - name: module:database
+            keys: ["Base de données"]
+      - id: ["environment"]
+        block-list: []
+        label:
+          - name: env:production
+            keys: ["Production"]
+          - name: env:staging
+            keys: ["Staging / Test"]
+          - name: env:development
+            keys: ["Développement local"]
