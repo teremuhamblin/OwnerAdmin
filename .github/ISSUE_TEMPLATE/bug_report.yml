@@ -1,0 +1,53 @@
+name: 🐛 Rapport de bug (Bug Report)
+description: Signaler un dysfonctionnement ou un bug dans OwnerAdmin v2.0
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: checkboxes
+    id: modules
+    attributes:
+      label: Module concerné
+      description: Veuillez sélectionner le module d'OwnerAdmin touché par ce bug.
+      options:
+        - label: Tableau de bord (Dashboard)
+          required: false
+        - label: Authentification & Utilisateurs
+          required: false
+        - label: API & Backend
+          required: false
+        - label: Base de données
+          required: false
+
+  - type: checkboxes
+    id: environment
+    attributes:
+      label: Environnement
+      description: Sur quel environnement le problème se produit-il ?
+      options:
+        - label: Production
+          required: false
+        - label: Staging / Test
+          required: false
+        - label: Développement local
+          required: false
+
+  - type: textarea
+    id: symptoms
+    attributes:
+      label: Description du problème
+      description: Décrivez clairement ce qui se passe.
+      placeholder: Un résumé clair du dysfonctionnement...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Étapes pour reproduire le bug
+      description: "Comment pouvons-nous reproduire le problème ?"
+      placeholder: |
+        1. Aller sur '...'
+        2. Cliquer sur '...'
+        3. Voir l'erreur...
+    validations:
+      required: true
