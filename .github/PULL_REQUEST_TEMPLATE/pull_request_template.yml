@@ -1,0 +1,67 @@
+name: 🚀 Proposition de Pull Request (Pull Request Template)
+description: Soumettre de nouvelles modifications ou corrections pour OwnerAdmin v2.0
+title: "[PR]: "
+labels: ["pull-request", "triage"]
+body:
+  - type: dropdown
+    id: pr-type
+    attributes:
+      label: Type de modification
+      description: Quel type de modification apportez-vous à OwnerAdmin v2.0 ?
+      options:
+        - 🚀 Nouvelle fonctionnalité (Feature)
+        - 🐛 Correction de bug (Bug Fix)
+        - 💅 Amélioration visuelle / UI (Styling/UI)
+        - ⚡ Optimisation des performances
+        - 📚 Documentation
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: modules
+    attributes:
+      label: Module(s) concerné(s)
+      description: Veuillez sélectionner le ou les modules touchés par cette Pull Request.
+      options:
+        - label: Tableau de bord (Dashboard)
+          required: false
+        - label: Authentification & Utilisateurs
+          required: false
+        - label: API & Backend
+          required: false
+        - label: Base de données
+          required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description des changements
+      description: Expliquez clairement ce que cette Pull Request apporte.
+      placeholder: Décrivez les modifications apportées, les choix techniques ou les correctifs...
+    validations:
+      required: true
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Comment tester ?
+      description: Donnez les étapes pour tester et valider votre code.
+      placeholder: |
+        1. Lancer le projet en local...
+        2. Aller sur la page...
+        3. Vérifier que...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Liste de vérification (Checklist)
+      description: Veuillez cocher les cases ci-dessous avant de soumettre.
+      options:
+        - label: J'ai testé mon code localement sur mon environnement.
+          required: true
+        - label: Mon code suit les conventions du projet OwnerAdmin.
+          required: true
+        - label: J'ai mis à jour la documentation si nécessaire.
+          required: false
